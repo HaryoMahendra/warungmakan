@@ -1,0 +1,23 @@
+export const getTheme = (isDark, scrolled) => isDark ? {
+  bg: "#100a02", bgAlt: "#150d03", card: "#1c1005",
+  surface: "rgba(251,146,60,.07)",
+  nav: scrolled ? "rgba(16,10,2,.97)" : "rgba(16,10,2,.82)",
+  navBorder: scrolled ? "rgba(251,146,60,.16)" : "transparent",
+  text: "#fdf4e7", textMuted: "rgba(253,230,188,.58)", textDim: "rgba(253,210,140,.28)",
+  accent: "#ea580c", accentSoft: "#fb923c", accentGold: "#f59e0b",
+  border: "rgba(251,146,60,.12)", borderStrong: "rgba(251,146,60,.22)",
+  divider: "rgba(251,146,60,.07)", chipBg: "rgba(251,146,60,.07)",
+  chipActive: "rgba(234,88,12,.2)", toggleBg: "rgba(251,146,60,.1)",
+  footerBg: "#0a0602",
+} : {
+  bg: "#fdf6ee", bgAlt: "#fff9f2", card: "#ffffff",
+  surface: "rgba(234,88,12,.05)",
+  nav: scrolled ? "rgba(253,246,238,.97)" : "rgba(253,246,238,.86)",
+  navBorder: scrolled ? "rgba(234,88,12,.14)" : "transparent",
+  text: "#180900", textMuted: "rgba(24,9,0,.56)", textDim: "rgba(24,9,0,.33)",
+  accent: "#c2410c", accentSoft: "#ea580c", accentGold: "#b45309",
+  border: "rgba(234,88,12,.11)", borderStrong: "rgba(234,88,12,.22)",
+  divider: "rgba(234,88,12,.07)", chipBg: "rgba(234,88,12,.06)",
+  chipActive: "rgba(234,88,12,.13)", toggleBg: "rgba(234,88,12,.08)",
+  footerBg: "#f5e8d5",
+};
