@@ -54,6 +54,17 @@
   .andalan-grid { grid-template-columns: 1fr }
   .kontak-grid { grid-template-columns: 1fr !important }
 }
+@media (max-width: 680px) {
+  .nav-desktop { display: none !important }
+  .hamburger-btn { display: flex !important }
+  .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 10px }
+  .andalan-grid { grid-template-columns: 1fr }
+  .kontak-grid { grid-template-columns: 1fr !important }
+}
+
+@media (min-width: 681px) {
+  .hamburger-btn { display: none !important }
+}
 @media (max-width: 460px) {
   .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 10px }
   .info-grid { grid-template-columns: repeat(2, 1fr) }

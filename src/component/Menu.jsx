@@ -57,9 +57,18 @@ export default function Menu({ menuRef, t, setSelectedItem }) {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24, flexWrap: "wrap", gap: 14 }}>
           <div>
             <p className="eyebrow" style={{ color: t.accent }}>Jelajahi</p>
-            <h2 className="serif" style={{ fontSize: "clamp(22px,2.6vw,32px)", fontWeight: 900, lineHeight: 1.1, color: t.text }}>
-              Seluruh <em style={{ color: t.accent, fontStyle: "italic" }}>Menu</em>
-            </h2>
+           <h2 className="serif" style={{
+  fontSize: "clamp(22px,2.6vw,32px)",
+  fontWeight: 900,
+  lineHeight: 1.1,
+  color: t.text
+}}>
+  {activeFilter === "Semua" ? (
+    <>Semua <em style={{ color: t.accent, fontStyle: "italic" }}>Menu</em></>
+  ) : (
+    <>Menu <em style={{ color: t.accent, fontStyle: "italic" }}>{activeFilter}</em></>
+  )}
+</h2>
           </div>
           <div className="scroll-hide" style={{ display: "flex", gap: 8 }}>
             {filterChips.map(label => (

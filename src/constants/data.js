@@ -6,11 +6,11 @@ export const menuUtama = [
   {
     id: 1,
     nama: "Soto Ayam Khas Pacitan",
-    deskripsi: "Kuah bening gurih dengan ayam kampung pilihan, tauge segar, telur, dan perpaduan rempah khas Pacitan.",
+    deskripsi: "Kuah bening gurih dengan perpaduan rempah khas Pacitan.",
     deskripsiLengkap: "Soto Ayam khas Pacitan hadir dengan kuah bening yang jernih namun kaya rasa. Menggunakan ayam kampung pilihan yang dimasak perlahan bersama rempah asli Pacitan — serai, daun jeruk, lengkuas, dan kunyit — menghasilkan kaldu yang gurih alami. Disajikan dengan tauge segar, telur rebus, soun, daun bawang, dan bawang goreng renyah.",
     harga: "Rp 10.000",
     img: "/assets/menu/sotoayam.jpeg",
-    andalan: true, rating: "5.0", porsi: "1 Porsi", kategori: "Makanan Utama",
+    andalan: true, rating: "5.0", porsi: "1 Porsi", kategori: "Makanan",
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const menuUtama = [
     deskripsiLengkap: "Rawon daging sapi yang dimasak dengan bumbu kluwek asli pilihan, menghasilkan kuah hitam pekat yang kaya rasa dan aroma. Daging sapi dimasak hingga empuk dan menyerap bumbu sempurna. Disajikan dengan tauge pendek, telur asin, sambal rawit, kerupuk udang, dan nasi putih pulen.",
     harga: "Rp 12.000",
     img: "/assets/menu/rawondaging.jpg",
-    andalan: true, rating: "5.0", porsi: "1 Porsi", kategori: "Makanan Utama",
+    andalan: true, rating: "5.0", porsi: "1 Porsi", kategori: "Makanan",
   },
 ];
 

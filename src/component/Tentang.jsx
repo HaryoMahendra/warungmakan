@@ -28,7 +28,7 @@ export default function Tentang({ tentangRef, t }) {
             {[
               { icon: "🍳", title: "Masak Segar", desc: "Bahan segar setiap hari, tanpa pengawet apapun" },
               { icon: "📍", title: "Lokasi", desc: "Perum Bumi Antariksa, Jl. Hercules J6, Madiun" },
-              { icon: "🕕", title: "Buka Tiap Hari", desc: "Pukul 06.00 WIB hingga stok habis" },
+              { icon: "🕕", title: "Buka Tiap Hari", desc: "Pukul 06.00 WIB - Habis" },
               { icon: "🌶", title: "Bumbu Asli", desc: "Rempah turun-temurun khas Pacitan" },
               { icon: "💰", title: "Harga Ramah", desc: "Mulai Rp 2.000 untuk semua kalangan" },
               { icon: "⭐", title: "5 Bintang", desc: "Dipercaya pelanggan setia sejak berdiri" },

@@ -31,7 +31,7 @@ export default function Kontak({ kontakRef, isDark, t }) {
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {[
               { iconPath: <><path d="M12 21s-8-6.5-8-12a8 8 0 1116 0c0 5.5-8 12-8 12z"/><circle cx="12" cy="9" r="2.5"/></>, label: "Alamat", value: "Perum Bumi Antariksa, Jl. Hercules Blok J No.6, Klegen, Kartoharjo, Kota Madiun, Jawa Timur" },
-              { iconPath: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></>, label: "Jam Operasional", value: "Setiap Hari · 06.00 WIB hingga stok habis" },
+              { iconPath: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></>, label: "Jam Operasional", value: "Setiap Hari · 06.00 WIB - Habis" },
               { isWA: true, label: "WhatsApp", value: "+62 812-3456-7890 · Respon cepat" },
             ].map(row => (
               <div key={row.label} style={{ display: "flex", gap: 16, alignItems: "flex-start", flex: 1, background: t.card, border: `1px solid ${t.border}`, borderRadius: 14, padding: "18px" }}>

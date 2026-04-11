@@ -20,7 +20,7 @@ export default function Hero({ homeRef, isDark, scrollTo, t }) {
         <p className="reveal d2 eyebrow" style={{ color: "rgba(251,146,60,.85)", marginBottom: 14 }}>Warung Makan Khas Pacitan</p>
 
         <h1 className="reveal d3 serif" style={{ fontSize: "clamp(44px,6.5vw,82px)", fontWeight: 900, lineHeight: 1.05, color: "#ffffff", marginBottom: 22, maxWidth: 820, textShadow: "0 2px 24px rgba(0,0,0,.45)" }}>
-          Cita Rasa <em style={{ color: "#fb923c", fontStyle: "italic" }}>Otentik</em><br />Warisan Leluhur
+          Cita Rasa <em style={{ color: "#fb923c", fontStyle: "italic" }}>Otentik</em><br />Warisan <em style={{ color: "#fb923c", fontStyle: "italic" }}>Warisan</em> Leluhur
         </h1>
 
         <p className="reveal d4" style={{ fontSize: 15, color: "rgba(255,230,195,.75)", lineHeight: 1.85, maxWidth: 480, marginBottom: 38 }}>
