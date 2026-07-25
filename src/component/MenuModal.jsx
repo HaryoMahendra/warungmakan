@@ -10,7 +10,7 @@ export default function MenuModal({ item, onClose, t }) {
     return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
   }, [onClose]);
 
-  const pesanMsg = `Halo RM Soto Ayam, saya ingin memesan *${item.nama}* (${item.harga}) 🙏`;
+  const pesanMsg = `Soto Ayam Kampung, saya ingin pesan *${item.nama}* (${item.harga}) 🙏`;
 
   return (
     <div onClick={onClose} style={{
@@ -63,7 +63,7 @@ export default function MenuModal({ item, onClose, t }) {
             background: "#16a34a", color: "#fff", fontSize: 14, fontWeight: 700,
             padding: "15px 28px", borderRadius: 12, textDecoration: "none",
           }}>
-            <IconWA /> Pesan Sekarang — {item.harga}
+            <IconWA /> Pesan Sekarang 
           </a>
         </div>
       </div>

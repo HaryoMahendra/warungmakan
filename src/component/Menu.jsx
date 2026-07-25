@@ -19,9 +19,9 @@ export default function Menu({ menuRef, t, setSelectedItem }) {
         {/* Header andalan */}
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 36, flexWrap: "wrap", gap: 16 }}>
           <div>
-            <p className="eyebrow" style={{ color: t.accent }}>Pilihan Terbaik Kami</p>
+            <p className="eyebrow" style={{ color: t.accent }}>Menu Best Seller Kami</p>
             <h2 className="serif" style={{ fontSize: "clamp(26px,3.2vw,40px)", fontWeight: 900, lineHeight: 1.08, color: t.text }}>
-              Menu <em style={{ color: t.accent, fontStyle: "italic" }}>Andalan</em>
+              Menu <em style={{ color: t.accent, fontStyle: "italic" }}>Utama</em>
             </h2>
           </div>
         </div>

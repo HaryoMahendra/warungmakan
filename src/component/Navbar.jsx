@@ -22,7 +22,7 @@ export default function Navbar({ activeSection, scrolled, isDark, setIsDark, scr
         <div style={{ display: "flex", alignItems: "center", gap: 11, cursor: "pointer" }} onClick={() => scrollTo("home")}>
           <img src="/assets/Logo.png" alt="Logo" style={{ width: 40, height: 40, borderRadius: 12, objectFit: "cover", border: `2px solid ${t.borderStrong}` }} />
           <div>
-            <div className="serif" style={{ fontSize: 15, fontWeight: 900, color: t.text, lineHeight: 1.1 }}>RM Soto Ayam</div>
+            <div className="serif" style={{ fontSize: 15, fontWeight: 900, color: t.text, lineHeight: 1.1 }}>Soto Ayam Kampung</div>
             <div style={{ fontSize: 9.5, color: t.textDim, fontWeight: 500, letterSpacing: ".08em", textTransform: "uppercase" }}>Khas Pacitan</div>
           </div>
         </div>

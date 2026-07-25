@@ -7,7 +7,7 @@ export default function Footer({ scrollTo, t }) {
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
             <img src="/assets/Logo.png" alt="Logo" style={{ width: 42, height: 42, borderRadius: 12, objectFit: "cover", border: `1px solid ${t.borderStrong}` }} />
             <div>
-              <div className="serif" style={{ fontSize: 16, fontWeight: 900, color: t.text, lineHeight: 1.1 }}>RM Soto Ayam</div>
+              <div className="serif" style={{ fontSize: 16, fontWeight: 900, color: t.text, lineHeight: 1.1 }}>Soto Ayam</div>
               <div style={{ fontSize: 10, color: t.textDim, letterSpacing: ".07em", textTransform: "uppercase", marginTop: 3 }}>Masakan Khas Pacitan</div>
             </div>
           </div>
@@ -49,7 +49,7 @@ export default function Footer({ scrollTo, t }) {
 
       <div style={{ borderTop: `1px solid ${t.divider}`, padding: "16px 36px", textAlign: "center" }}>
         <div style={{ fontSize: 11, color: t.textDim }}>
-          © 2025 RM. Soto Ayam · Perum Bumi Antariksa, Kota Madiun
+          © 2025 RM. Soto Ayam Kampung Khas Pacitan. All rights reserved.
         </div>
       </div>
     </footer>
