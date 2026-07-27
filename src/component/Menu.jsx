@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   menuUtama,
   pelengkap,
@@ -6,8 +6,18 @@ import {
   filterMap,
 } from "../constants/data";
 
-export default function Menu({ menuRef, t, setSelectedItem }) {
-  const [activeFilter, setActiveFilter] = useState("Semua");
+const slugify = (s) => s.toLowerCase().replace(/\s+/g, "-");
+const unslugify = (slug) =>
+  filterChips.find((label) => slugify(label) === slug) || "Semua";
+
+export default function Menu({ t, setSelectedItem }) {
+  const { kategori } = useParams();
+  const navigate = useNavigate();
+  const activeFilter = kategori ? unslugify(kategori) : "Semua";
+
+  const setActiveFilter = (label) => {
+    navigate(label === "Semua" ? "/menu" : `/menu/${slugify(label)}`);
+  };
 
   const showAndalan = activeFilter === "Semua" || activeFilter === "Makanan";
   const andalanItems = showAndalan ? menuUtama : [];
@@ -21,11 +31,7 @@ export default function Menu({ menuRef, t, setSelectedItem }) {
   ];
 
   return (
-    <section
-      ref={menuRef}
-      id="menu"
-      style={{ padding: "80px 36px", background: t.bg }}
-    >
+    <section style={{ padding: "80px 36px", background: t.bg }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div
           style={{
@@ -39,7 +45,7 @@ export default function Menu({ menuRef, t, setSelectedItem }) {
         >
           <div>
             <p className="eyebrow" style={{ color: t.accent }}>
-              Menu Best Seller Kami
+              Menu
             </p>
             <h2
               className="serif"

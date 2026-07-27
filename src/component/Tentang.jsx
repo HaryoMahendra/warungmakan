@@ -42,9 +42,9 @@ export default function Tentang({ tentangRef, t }) {
   ];
 
   const keunggulan = [
-    { icon: "🌿", label: "Bahan Alami" },
+    { icon: "🍽️", label: "Melayani Dine in dan Take Away" },
+    { icon: "🌿", label: "Bahan Alami Tanpa Pengawet" },
     { icon: "🔥", label: "Dimasak Langsung" },
-    { icon: "⏰", label: "Selalu Segar" },
   ];
 
   return (
@@ -80,7 +80,7 @@ export default function Tentang({ tentangRef, t }) {
               }}
             >
               <img
-                src="/assets/Logo.png"
+                src="/assets/foto.jpeg"
                 alt="Rumah Makan Soto Ayam Kampung"
                 style={{
                   width: "100%",
@@ -114,10 +114,10 @@ export default function Tentang({ tentangRef, t }) {
                 ...reveal(0.18),
               }}
             >
-              Rumah Makan
+              Soto Ayam Kampung
               <br />
               <em style={{ color: t.accent, fontStyle: "italic" }}>
-                Soto Ayam Kampung
+                Khas Pacitan
               </em>
             </h2>
 
@@ -130,8 +130,8 @@ export default function Tentang({ tentangRef, t }) {
                 ...reveal(0.26),
               }}
             >
-              Hadir sejak 2025 di Kota Madiun, Rumah Makan Soto Ayam membawa
-              cita rasa otentik masakan khas Pacitan. Setiap hidangan dimasak
+              Hadir sejak 2025 di Kota Madiun, Soto Ayam Kampungmembawa
+              cita rasa bumbu khas Pacitan. Setiap hidangan dimasak
               langsung dari bahan segar tanpa pengawet, menjaga keaslian rasa
               yang sudah dikenal turun-temurun.
             </p>

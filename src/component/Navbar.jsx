@@ -1,21 +1,12 @@
 import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { IconSun, IconMoon } from "./icons/Icons";
 import { navLabels } from "../constants/data";
 
-export default function Navbar({
-  activeSection,
-  scrolled,
-  isDark,
-  setIsDark,
-  scrollTo,
-  t,
-}) {
-  const [menuOpen, setMenuOpen] = useState(false);
+const navRoutes = { home: "/", tentang: "/tentang", menu: "/menu", kontak: "/kontak" };
 
-  const handleNav = (id) => {
-    scrollTo(id);
-    setMenuOpen(false);
-  };
+export default function Navbar({ scrolled, isDark, setIsDark, t }) {
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
@@ -37,14 +28,14 @@ export default function Navbar({
           transition: "background .3s,border-color .3s",
         }}
       >
-        <div
+        <Link
+          to="/"
           style={{
             display: "flex",
             alignItems: "center",
             gap: 11,
-            cursor: "pointer",
+            textDecoration: "none",
           }}
-          onClick={() => scrollTo("home")}
         >
           <img
             src="/assets/Logo.png"
@@ -81,23 +72,23 @@ export default function Navbar({
               Khas Pacitan
             </div>
           </div>
-        </div>
+        </Link>
 
         <div className="nav-desktop" style={{ display: "flex", gap: 0 }}>
-          {["home", "tentang", "menu", "kontak"].map((id) => (
-            <button
+          {Object.entries(navRoutes).map(([id, path]) => (
+            <NavLink
               key={id}
+              to={path}
+              end={path === "/"}
               className="nav-link-btn"
-              onClick={() => handleNav(id)}
-              style={{
-                color: activeSection === id ? t.accent : t.textMuted,
-                fontWeight: activeSection === id ? 700 : 600,
-                borderBottomColor:
-                  activeSection === id ? t.accent : "transparent",
-              }}
+              style={({ isActive }) => ({
+                color: isActive ? t.accent : t.textMuted,
+                fontWeight: isActive ? 700 : 600,
+                borderBottomColor: isActive ? t.accent : "transparent",
+              })}
             >
               {navLabels[id]}
-            </button>
+            </NavLink>
           ))}
         </div>
 
@@ -186,30 +177,33 @@ export default function Navbar({
             flexDirection: "column",
           }}
         >
-          {["home", "tentang", "menu", "kontak"].map((id) => (
-            <button
+          {Object.entries(navRoutes).map(([id, path]) => (
+            <NavLink
               key={id}
-              onClick={() => handleNav(id)}
-              style={{
+              to={path}
+              end={path === "/"}
+              onClick={() => setMenuOpen(false)}
+              style={({ isActive }) => ({
                 background: "transparent",
                 border: "none",
                 cursor: "pointer",
                 padding: "13px 28px",
                 textAlign: "left",
                 fontSize: 15,
-                fontWeight: activeSection === id ? 700 : 500,
-                color: activeSection === id ? t.accent : t.textMuted,
+                fontWeight: isActive ? 700 : 500,
+                color: isActive ? t.accent : t.textMuted,
                 fontFamily: "inherit",
                 letterSpacing: ".01em",
-                borderLeft:
-                  activeSection === id
-                    ? `3px solid ${t.accent}`
-                    : "3px solid transparent",
+                borderLeft: isActive
+                  ? `3px solid ${t.accent}`
+                  : "3px solid transparent",
                 transition: "all .15s",
-              }}
+                textDecoration: "none",
+                display: "block",
+              })}
             >
               {navLabels[id]}
-            </button>
+            </NavLink>
           ))}
         </div>
       )}
