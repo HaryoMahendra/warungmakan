@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { AnimatePresence } from "motion/react";
+import * as motion from "motion/react-client";
 import {
   menuUtama,
   pelengkap,
@@ -43,13 +45,6 @@ export default function Menu({ t, setSelectedItem }) {
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
-
-  // reset animasi tiap kali route/filter berubah (biar transisi antar kategori juga terasa)
-  useEffect(() => {
-    setVisible(false);
-    const id = requestAnimationFrame(() => setVisible(true));
-    return () => cancelAnimationFrame(id);
-  }, [kategori]);
 
   const reveal = (delay = 0, distance = 20) => ({
     opacity: visible ? 1 : 0,
@@ -291,145 +286,172 @@ export default function Menu({ t, setSelectedItem }) {
               )}
             </h2>
           </div>
+
+          {/* Chip filter dengan underline yang meluncur (layoutId) */}
           <div className="scroll-hide" style={{ display: "flex", gap: 8 }}>
             {filterChips.map((label) => (
-              <button
+              <motion.button
                 key={label}
                 className="chip-btn"
                 onClick={() => setActiveFilter(label)}
-                style={{
-                  background: activeFilter === label ? t.chipActive : t.chipBg,
-                  borderColor: activeFilter === label ? t.accentSoft : t.border,
+                initial={false}
+                animate={{
+                  backgroundColor:
+                    activeFilter === label ? t.chipActive : t.chipBg,
                   color: activeFilter === label ? t.accent : t.textMuted,
+                }}
+                transition={{ duration: 0.25 }}
+                style={{
+                  position: "relative",
+                  borderColor:
+                    activeFilter === label ? t.accentSoft : t.border,
                   fontWeight: activeFilter === label ? 700 : 600,
                 }}
               >
                 {label}
-              </button>
+                
+              </motion.button>
             ))}
           </div>
         </div>
 
-        {allItems.length === 0 ? (
-          <div
-            style={{
-              textAlign: "center",
-              padding: "40px 0",
-              color: t.textMuted,
-              fontSize: 14,
-              ...reveal(0.26),
-            }}
-          >
-            Tidak ada menu untuk kategori ini.
-          </div>
-        ) : (
-          <div className="menu-grid">
-            {allItems.map((item, idx) => (
-              <div
-                key={idx}
-                className="menu-card"
-                style={{
-                  background: t.card,
-                  borderColor: t.border,
-                  ...reveal(0.24 + Math.min(idx * 0.04, 0.32), 18),
-                }}
-                onClick={() => setSelectedItem(item)}
-              >
-                <div
-                  className="card-img"
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    aspectRatio: "1/1",
-                    overflow: "hidden",
+        {/* Grid menu: fade + slide keluar-masuk tiap ganti filter, seperti contoh SharedLayoutAnimation */}
+        <AnimatePresence mode="wait">
+          {allItems.length === 0 ? (
+            <motion.div
+              key="empty"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              style={{
+                textAlign: "center",
+                padding: "40px 0",
+                color: t.textMuted,
+                fontSize: 14,
+              }}
+            >
+              Tidak ada menu untuk kategori ini.
+            </motion.div>
+          ) : (
+            <motion.div
+              key={activeFilter}
+              className="menu-grid"
+              initial={{ y: 14, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -14, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {allItems.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  className="menu-card"
+                  initial={{ y: 12, opacity: 0, scale: 0.97 }}
+                  animate={{ y: 0, opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.35,
+                    delay: Math.min(idx * 0.035, 0.3),
+                    ease: [0.22, 1, 0.36, 1],
                   }}
+                  style={{ background: t.card, borderColor: t.border }}
+                  onClick={() => setSelectedItem(item)}
                 >
-                  <img
-                    src={item.img}
-                    alt={item.nama}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      display: "block",
-                    }}
-                  />
                   <div
+                    className="card-img"
                     style={{
-                      position: "absolute",
-                      inset: 0,
-                      background:
-                        "linear-gradient(to top,rgba(0,0,0,.62) 0%,transparent 55%)",
-                      pointerEvents: "none",
+                      position: "relative",
+                      width: "100%",
+                      aspectRatio: "1/1",
+                      overflow: "hidden",
                     }}
-                  />
-                  {item._type === "andalan" && (
+                  >
+                    <img
+                      src={item.img}
+                      alt={item.nama}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background:
+                          "linear-gradient(to top,rgba(0,0,0,.62) 0%,transparent 55%)",
+                        pointerEvents: "none",
+                      }}
+                    />
+                    {item._type === "andalan" && (
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: 8,
+                          left: 8,
+                          background: t.accent,
+                          color: "#fff",
+                          fontSize: 9,
+                          fontWeight: 700,
+                          padding: "3px 8px",
+                          borderRadius: 5,
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        Andalan
+                      </span>
+                    )}
                     <span
                       style={{
                         position: "absolute",
-                        top: 8,
-                        left: 8,
-                        background: t.accent,
-                        color: "#fff",
+                        bottom: 8,
+                        right: 8,
+                        background: "rgba(0,0,0,.68)",
+                        color: "#f59e0b",
                         fontSize: 9,
                         fontWeight: 700,
-                        padding: "3px 8px",
+                        padding: "3px 7px",
                         borderRadius: 5,
-                        textTransform: "uppercase",
                       }}
                     >
-                      Andalan
+                      ★ {item.rating || "4.9"}
                     </span>
-                  )}
-                  <span
-                    style={{
-                      position: "absolute",
-                      bottom: 8,
-                      right: 8,
-                      background: "rgba(0,0,0,.68)",
-                      color: "#f59e0b",
-                      fontSize: 9,
-                      fontWeight: 700,
-                      padding: "3px 7px",
-                      borderRadius: 5,
-                    }}
-                  >
-                    ★ {item.rating || "4.9"}
-                  </span>
-                </div>
-                <div
-                  style={{
-                    padding: "10px 12px 14px",
-                    flex: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 3,
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: 11,
-                      fontWeight: 800,
-                      color: t.text,
-                      lineHeight: 1.35,
-                    }}
-                  >
-                    {item.nama}
                   </div>
                   <div
-                    className="serif"
-                    style={{ fontSize: 13, fontWeight: 900, color: t.accent }}
+                    style={{
+                      padding: "10px 12px 14px",
+                      flex: 1,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 3,
+                    }}
                   >
-                    {item.harga}
+                    <div
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 800,
+                        color: t.text,
+                        lineHeight: 1.35,
+                      }}
+                    >
+                      {item.nama}
+                    </div>
+                    <div
+                      className="serif"
+                      style={{ fontSize: 13, fontWeight: 900, color: t.accent }}
+                    >
+                      {item.harga}
+                    </div>
+                    <div style={{ fontSize: 10, color: t.textDim }}>
+                      {item.kategori}
+                    </div>
                   </div>
-                  <div style={{ fontSize: 10, color: t.textDim }}>
-                    {item.kategori}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
