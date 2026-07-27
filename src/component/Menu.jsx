@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   menuUtama,
@@ -15,6 +16,47 @@ export default function Menu({ t, setSelectedItem }) {
   const navigate = useNavigate();
   const activeFilter = kategori ? unslugify(kategori) : "Semua";
 
+  const [visible, setVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReduced) {
+      setVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(node);
+        }
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // reset animasi tiap kali route/filter berubah (biar transisi antar kategori juga terasa)
+  useEffect(() => {
+    setVisible(false);
+    const id = requestAnimationFrame(() => setVisible(true));
+    return () => cancelAnimationFrame(id);
+  }, [kategori]);
+
+  const reveal = (delay = 0, distance = 20) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "translateY(0)" : `translateY(${distance}px)`,
+    transition: `opacity .6s cubic-bezier(.22,1,.36,1) ${delay}s, transform .6s cubic-bezier(.22,1,.36,1) ${delay}s`,
+  });
+
   const setActiveFilter = (label) => {
     navigate(label === "Semua" ? "/menu" : `/menu/${slugify(label)}`);
   };
@@ -31,7 +73,7 @@ export default function Menu({ t, setSelectedItem }) {
   ];
 
   return (
-    <section style={{ padding: "80px 36px", background: t.bg }}>
+    <section ref={sectionRef} style={{ padding: "80px 36px", background: t.bg }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div
           style={{
@@ -44,7 +86,7 @@ export default function Menu({ t, setSelectedItem }) {
           }}
         >
           <div>
-            <p className="eyebrow" style={{ color: t.accent }}>
+            <p className="eyebrow" style={{ color: t.accent, ...reveal(0) }}>
               Menu
             </p>
             <h2
@@ -54,6 +96,7 @@ export default function Menu({ t, setSelectedItem }) {
                 fontWeight: 900,
                 lineHeight: 1.08,
                 color: t.text,
+                ...reveal(0.08),
               }}
             >
               Menu{" "}
@@ -63,11 +106,15 @@ export default function Menu({ t, setSelectedItem }) {
         </div>
 
         <div className="andalan-grid" style={{ marginBottom: 72 }}>
-          {menuUtama.map((item) => (
+          {menuUtama.map((item, idx) => (
             <div
               key={item.id}
               className="andalan-card"
-              style={{ background: t.card, borderColor: t.border }}
+              style={{
+                background: t.card,
+                borderColor: t.border,
+                ...reveal(0.14 + idx * 0.08, 24),
+              }}
               onClick={() => setSelectedItem(item)}
             >
               <div
@@ -213,6 +260,7 @@ export default function Menu({ t, setSelectedItem }) {
             marginBottom: 24,
             flexWrap: "wrap",
             gap: 14,
+            ...reveal(0.2),
           }}
         >
           <div>
@@ -269,6 +317,7 @@ export default function Menu({ t, setSelectedItem }) {
               padding: "40px 0",
               color: t.textMuted,
               fontSize: 14,
+              ...reveal(0.26),
             }}
           >
             Tidak ada menu untuk kategori ini.
@@ -279,7 +328,11 @@ export default function Menu({ t, setSelectedItem }) {
               <div
                 key={idx}
                 className="menu-card"
-                style={{ background: t.card, borderColor: t.border }}
+                style={{
+                  background: t.card,
+                  borderColor: t.border,
+                  ...reveal(0.24 + Math.min(idx * 0.04, 0.32), 18),
+                }}
                 onClick={() => setSelectedItem(item)}
               >
                 <div

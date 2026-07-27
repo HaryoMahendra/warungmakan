@@ -1,7 +1,42 @@
+import { useEffect, useRef, useState } from "react";
 import { IconWA } from "./icons/Icons";
 import { waLink } from "../constants/data";
 
 export default function Kontak({ kontakRef, isDark, t }) {
+  const [visible, setVisible] = useState(false);
+  const localRef = useRef(null);
+
+  useEffect(() => {
+    const node = localRef.current;
+    if (!node) return;
+
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReduced) {
+      setVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(node);
+        }
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const reveal = (delay = 0, distance = 20) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "translateY(0)" : `translateY(${distance}px)`,
+    transition: `opacity .7s cubic-bezier(.22,1,.36,1) ${delay}s, transform .7s cubic-bezier(.22,1,.36,1) ${delay}s`,
+  });
+
   const mapsLink =
     "https://www.google.com/maps/place/RM.+Soto+Ayam+Kampung+Khas+Pacitan/@-7.6303044,111.5397765,769m/data=!3m1!1e3!4m6!3m5!1s0x2e79bf0039212bad:0xb5d6eb252b3cf246!8m2!3d-7.6303044!4d111.5397765!16s%2Fg%2F11c5q9v_7k";
 
@@ -38,13 +73,16 @@ export default function Kontak({ kontakRef, isDark, t }) {
 
   return (
     <section
-      ref={kontakRef}
+      ref={(node) => {
+        localRef.current = node;
+        if (kontakRef) kontakRef.current = node;
+      }}
       id="kontak"
-      style={{ padding: "80px 36px", background: t.bgAlt }}
+      style={{ padding: "80px 36px", background: t.bgAlt, overflow: "hidden" }}
     >
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <p className="eyebrow" style={{ color: t.accent }}>
+          <p className="eyebrow" style={{ color: t.accent, ...reveal(0) }}>
             Hubungi Kami
           </p>
           <h2
@@ -55,6 +93,7 @@ export default function Kontak({ kontakRef, isDark, t }) {
               lineHeight: 1.06,
               color: t.text,
               marginBottom: 18,
+              ...reveal(0.08),
             }}
           >
             Ingin{" "}
@@ -67,10 +106,11 @@ export default function Kontak({ kontakRef, isDark, t }) {
               maxWidth: 360,
               margin: "0 auto 28px",
               lineHeight: 1.85,
+              ...reveal(0.16),
             }}
           >
-            Pesan langsung via WhatsApp atau kunjungi kami di lokasi. Kami siap
-            melayani dengan sepenuh hati.
+            Pesan langsung via WhatsApp atau kunjungi sesuai alamat. Kami siap
+            melayani sesuai dengan kebutuhan Anda dan sepenuh hati.
           </p>
         </div>
 
@@ -89,6 +129,7 @@ export default function Kontak({ kontakRef, isDark, t }) {
               overflow: "hidden",
               border: `1px solid ${t.borderStrong}`,
               minHeight: 320,
+              ...reveal(0.24, 24),
             }}
           >
             <iframe
@@ -111,7 +152,7 @@ export default function Kontak({ kontakRef, isDark, t }) {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {rows.map((row) => {
+            {rows.map((row, idx) => {
               const cardStyle = {
                 display: "flex",
                 gap: 16,
@@ -123,7 +164,9 @@ export default function Kontak({ kontakRef, isDark, t }) {
                 padding: "18px",
                 textDecoration: "none",
                 cursor: row.href ? "pointer" : "default",
-                transition: "border-color .2s, transform .2s",
+                transition:
+                  "border-color .2s, transform .2s, opacity .7s cubic-bezier(.22,1,.36,1)",
+                ...reveal(0.3 + idx * 0.1, 20),
               };
 
               const content = (
