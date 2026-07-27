@@ -109,7 +109,7 @@ export default function Navbar({ scrolled, isDark, setIsDark, t }) {
             className="hamburger-btn"
             onClick={() => setMenuOpen(!menuOpen)}
             style={{
-              display: "none", // dikontrol CSS
+              display: "none", 
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",

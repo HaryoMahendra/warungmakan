@@ -287,7 +287,7 @@ export default function Menu({ t, setSelectedItem }) {
             </h2>
           </div>
 
-          {/* Chip filter dengan underline yang meluncur (layoutId) */}
+         
           <div className="scroll-hide" style={{ display: "flex", gap: 8 }}>
             {filterChips.map((label) => (
               <motion.button
@@ -315,7 +315,7 @@ export default function Menu({ t, setSelectedItem }) {
           </div>
         </div>
 
-        {/* Grid menu: fade + slide keluar-masuk tiap ganti filter, seperti contoh SharedLayoutAnimation */}
+        
         <AnimatePresence mode="wait">
           {allItems.length === 0 ? (
             <motion.div
