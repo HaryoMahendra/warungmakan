@@ -4,10 +4,10 @@ import { waLink } from "../constants/data";
 import { IconWA } from "./icons/Icons";
 
 const heroImages = [
-  "/assets/Logo.png",
   "/assets/foto.jpeg",
-  "/assets/logo-halal.jpeg",
   "/assets/menu/sotoayam.jpeg",
+  "/assets/menu/rawondaging.jpg",
+  "/assets/menu/menulainnya.jpg",
 ];
 
 const SLIDE_DURATION = 2000; 
@@ -69,13 +69,25 @@ export default function Hero({ isDark, t }) {
         ))}
       </div>
 
+      {/* overlay gelap dasar, dipertegas biar teks selalu terbaca di atas foto apa pun */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           zIndex: 1,
           background:
-            "linear-gradient(to bottom,rgba(20,10,4,.5) 0%,rgba(20,10,4,.4) 45%,rgba(10,6,2,.72) 100%)",
+            "linear-gradient(to bottom, rgba(8,4,1,.72) 0%, rgba(8,4,1,.62) 45%, rgba(5,2,1,.85) 100%)",
+        }}
+      />
+
+      {/* vignette tambahan tepat di area teks supaya kontrasnya konsisten */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 2,
+          background:
+            "radial-gradient(60% 55% at 50% 46%, rgba(0,0,0,.42) 0%, transparent 72%)",
         }}
       />
 
@@ -99,9 +111,9 @@ export default function Hero({ isDark, t }) {
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
-              background: "rgba(0,0,0,.28)",
-              border: "1px solid rgba(251,146,60,.35)",
-              color: "#fdba8c",
+              background: "rgba(0,0,0,.4)",
+              border: "1px solid rgba(251,146,60,.4)",
+              color: "#ffd8b0",
               fontSize: 11,
               fontWeight: 700,
               padding: "7px 16px",
@@ -125,44 +137,22 @@ export default function Hero({ isDark, t }) {
           </span>
         </div>
 
-        <p
-          className="reveal d2 eyebrow"
-          style={{ color: "rgba(253,186,140,.8)", marginBottom: 14 }}
-        >
-          Soto Ayam Kampung Khas Pacitan
-        </p>
-
         <h1
           className="reveal d3 serif"
           style={{
             fontSize: "clamp(44px,6.5vw,82px)",
             fontWeight: 900,
             lineHeight: 1.05,
-            color: "rgba(255,247,237,.94)",
-            marginBottom: 22,
+            color: "#fff8ee",
+            marginBottom: 45,
             maxWidth: 820,
-            textShadow: "0 2px 18px rgba(0,0,0,.3)",
+            textShadow: "0 3px 24px rgba(0,0,0,.55), 0 1px 3px rgba(0,0,0,.6)",
           }}
         >
-          Cita Rasa <em style={{ color: "#fb923c", fontStyle: "italic" }}>Otentik</em>
+          Selamat Datang di
           <br />
-          <em style={{ color: "#fb923c", fontStyle: "italic" }}>Warisan</em> Leluhur
+          <em style={{ color: "#fdba74", fontStyle: "italic" }}>Soto Ayam</em> Kampung Khas Pacitan
         </h1>
-
-        <p
-          className="reveal d4"
-          style={{
-            fontSize: 15,
-            color: "rgba(255,230,205,.68)",
-            lineHeight: 1.85,
-            maxWidth: 480,
-            marginBottom: 38,
-          }}
-        >
-          Dimasak dari hati menggunakan rempah pilihan khas Pacitan yang telah
-          diwariskan turun-temurun. Setiap mangkuk adalah kehangatan dan
-          cerita.
-        </p>
 
         <div
           className="reveal d5"
@@ -189,7 +179,6 @@ export default function Hero({ isDark, t }) {
             onMouseOut={(e) => (e.currentTarget.style.transform = "translateY(0)")}
           >
             Lihat Menu
-            <span>→</span>
           </Link>
           <a
           
@@ -203,21 +192,21 @@ export default function Hero({ isDark, t }) {
               alignItems: "center",
               gap: 8,
               borderRadius: 10,
-              border: "1px solid rgba(251,146,60,.4)",
-              color: "#fdba8c",
-              background: "rgba(0,0,0,.25)",
+              border: "1px solid rgba(251,146,60,.45)",
+              color: "#ffd8b0",
+              background: "rgba(0,0,0,.35)",
               backdropFilter: "blur(6px)",
               textDecoration: "none",
               transition: "background .2s, transform .2s, border-color .2s",
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.background = "rgba(251,146,60,.15)";
+              e.currentTarget.style.background = "rgba(251,146,60,.18)";
               e.currentTarget.style.borderColor = "#fb923c";
               e.currentTarget.style.transform = "translateY(-2px)";
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.background = "rgba(0,0,0,.25)";
-              e.currentTarget.style.borderColor = "rgba(251,146,60,.4)";
+              e.currentTarget.style.background = "rgba(0,0,0,.35)";
+              e.currentTarget.style.borderColor = "rgba(251,146,60,.45)";
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >
@@ -250,71 +239,13 @@ export default function Hero({ isDark, t }) {
                   background:
                     idx === activeSlide
                       ? "#fb923c"
-                      : "rgba(255,255,255,.35)",
+                      : "rgba(255,255,255,.4)",
                   transition: "width .35s ease, background .35s ease",
                 }}
               />
             ))}
           </div>
         )}
-
-        <div
-          className="reveal d5"
-          style={{
-            display: "inline-flex",
-            background: "rgba(0,0,0,.3)",
-            backdropFilter: "blur(10px)",
-            border: "1px solid rgba(251,146,60,.2)",
-            borderRadius: 16,
-            overflow: "hidden",
-          }}
-        >
-          {[
-            { num: "5+", label: "Menu Pilihan" },
-            { num: "★ 5.0", label: "Rating Pelanggan" },
-            { num: "1+", label: "Tahun Melayani" },
-          ].map((s, i) => (
-            <div
-              key={s.label}
-              style={{
-                padding: "18px 36px",
-                textAlign: "center",
-                borderLeft: i > 0 ? "1px solid rgba(251,146,60,.15)" : "none",
-                cursor: "default",
-                transition: "background .25s, transform .25s",
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.background = "rgba(251,146,60,.08)";
-                e.currentTarget.style.transform = "translateY(-3px)";
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
-            >
-              <div
-                className="serif"
-                style={{
-                  fontSize: 28,
-                  fontWeight: 900,
-                  color: "#fb923c",
-                  lineHeight: 1,
-                }}
-              >
-                {s.num}
-              </div>
-              <div
-                style={{
-                  fontSize: 11,
-                  color: "rgba(255,210,160,.55)",
-                  marginTop: 6,
-                }}
-              >
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

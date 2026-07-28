@@ -117,27 +117,36 @@ export default function Footer({ scrollTo, t }) {
               marginBottom: 16,
             }}
           >
-            Informasi
+            Social Media
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {[
-              { icon: "📍", text: "Jl. Hercules Blok J No.6, Kota Madiun" },
-              { icon: "🕕", text: "Buka Setiap Hari | 06.00 WIB – Habis" },
-              { icon: "⭐", text: "Rating 5.0 | Sejak 2025" },
-            ].map((info) => (
-              <div
-                key={info.text}
-                style={{ display: "flex", gap: 9, alignItems: "flex-start" }}
+              {
+                label: "Instagram",
+                url: "https://www.instagram.com/sotokhaspacitann/"
+              },
+              {
+                label: "Facebook",
+                url: "https://www.facebook.com/rmsotoayamkampungkhaspacitan"
+              },
+              {
+                label: "Tiktok",
+                url: "https://www.tiktok.com/@rmsotoayamkampungkhaspacitan"
+              },
+            ].map((social) => (
+              <a
+                key={social.label}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 13, color: t.textMuted, cursor: "pointer" }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.color = t.accentSoft)
+                }
+                onMouseOut={(e) => (e.currentTarget.style.color = t.textMuted)}
               >
-                <span style={{ fontSize: 13, flexShrink: 0, marginTop: 1 }}>
-                  {info.icon}
-                </span>
-                <span
-                  style={{ fontSize: 12, color: t.textMuted, lineHeight: 1.6 }}
-                >
-                  {info.text}
-                </span>
-              </div>
+                {social.label}
+              </a>
             ))}
           </div>
         </div>
@@ -151,7 +160,7 @@ export default function Footer({ scrollTo, t }) {
         }}
       >
         <div style={{ fontSize: 11, color: t.textDim }}>
-          © 2025 RM. Soto Ayam Kampung Khas Pacitan. All rights reserved.
+          © 2025 RM. Soto dan RawonKhas Pacitan. All rights reserved.
         </div>
       </div>
     </footer>
