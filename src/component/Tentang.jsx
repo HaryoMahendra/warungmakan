@@ -71,7 +71,8 @@ export default function Tentang({ tentangRef, t }) {
       jumlahUlasan: "3 ulasan",
       waktu: "5 bulan lalu",
       rating: 5,
-      pesan: "Rasanya sangat mantul bosku... buat menu sarapan dan makan siangmu.",
+      pesan:
+        "Rasanya sangat mantul bosku... buat menu sarapan dan makan siangmu.",
       food: 5,
       service: 5,
     },
@@ -183,8 +184,8 @@ export default function Tentang({ tentangRef, t }) {
               Hadir sejak 2025 di Kota Madiun, Soto Ayam Kampung membawa cita
               rasa bumbu khas Pacitan yang diwariskan turun-temurun. Racikan
               kunyit, serai, dan rempah pilihan direbus perlahan bersama ayam
-              kampung asli hingga menghasilkan kuah kuning bening yang gurih
-              dan harum — bukan sekadar soto biasa, tapi kenangan rasa rumah.
+              kampung asli hingga menghasilkan kuah kuning bening yang gurih dan
+              harum bukan sekadar soto biasa, tapi kenangan rasa rumah.
             </p>
             <p
               style={{
@@ -211,9 +212,9 @@ export default function Tentang({ tentangRef, t }) {
               }}
             >
               Dengan harga yang sangat terjangkau dan porsi yang mengenyangkan,
-              kami hadir untuk semua kalangan — dari pelajar, pekerja kantoran,
-              hingga keluarga — yang ingin menikmati masakan rumahan
-              berkualitas tanpa menguras kantong.
+              kami hadir untuk semua kalangan dari pelajar, pekerja kantoran,
+              hingga keluarga yang ingin menikmati masakan rumahan berkualitas
+              tanpa menguras kantong.
             </p>
 
             <div
@@ -309,13 +310,13 @@ export default function Tentang({ tentangRef, t }) {
                   marginBottom: 6,
                 }}
               >
-                "Resep ini saya pelajari langsung dari keluarga di Pacitan —
+                "Resep ini saya pelajari langsung dari keluarga di Pacitan
                 setiap mangkuk soto yang kami sajikan dimasak dengan cara yang
                 sama seperti dulu, tanpa jalan pintas. Buat kami, konsistensi
                 rasa adalah bentuk penghormatan pada resep keluarga sendiri."
               </p>
               <span style={{ fontSize: 11.5, fontWeight: 700, color: t.text }}>
-                — Pemilik Rumah Makan Soto Ayam Kampung
+                ~ Pemilik Warung Soto Ayam Kampung
               </span>
             </div>
 
@@ -335,9 +336,6 @@ export default function Tentang({ tentangRef, t }) {
                 style={{ color: "#f59e0b", fontSize: 16, letterSpacing: 3 }}
               >
                 ★★★★★
-              </span>
-              <span style={{ fontSize: 12, color: t.textMuted }}>
-                dari pelanggan setia kami
               </span>
             </div>
           </div>
@@ -367,19 +365,6 @@ export default function Tentang({ tentangRef, t }) {
           >
             Cerita di Balik Setiap Mangkuk
           </h3>
-          <p
-            style={{
-              fontSize: 13.5,
-              color: t.textMuted,
-              textAlign: "center",
-              maxWidth: 520,
-              margin: "0 auto 36px",
-              lineHeight: 1.8,
-            }}
-          >
-            Bukan kami yang bicara, tapi mereka yang sudah mencicipi langsung
-            setiap hari.
-          </p>
 
           <div
             style={{
@@ -399,7 +384,6 @@ export default function Tentang({ tentangRef, t }) {
                   padding: "20px 20px 18px",
                 }}
               >
-                {/* Header: avatar + nama + meta */}
                 <div
                   style={{
                     display: "flex",
@@ -408,7 +392,9 @@ export default function Tentang({ tentangRef, t }) {
                     marginBottom: 12,
                   }}
                 >
-                  <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                  <div
+                    style={{ display: "flex", gap: 10, alignItems: "center" }}
+                  >
                     <div
                       style={{
                         width: 38,
@@ -455,7 +441,6 @@ export default function Tentang({ tentangRef, t }) {
                   </span>
                 </div>
 
-                {/* Rating + waktu */}
                 <div
                   style={{
                     display: "flex",
@@ -464,7 +449,9 @@ export default function Tentang({ tentangRef, t }) {
                     marginBottom: 10,
                   }}
                 >
-                  <span style={{ color: "#f59e0b", fontSize: 14, letterSpacing: 2 }}>
+                  <span
+                    style={{ color: "#f59e0b", fontSize: 14, letterSpacing: 2 }}
+                  >
                     {"★".repeat(r.rating)}
                     {"☆".repeat(5 - r.rating)}
                   </span>
@@ -473,7 +460,6 @@ export default function Tentang({ tentangRef, t }) {
                   </span>
                 </div>
 
-                {/* Teks review */}
                 {r.pesan && (
                   <p
                     style={{
@@ -488,7 +474,6 @@ export default function Tentang({ tentangRef, t }) {
                   </p>
                 )}
 
-                {/* Food / Service */}
                 <div
                   style={{
                     display: "flex",
@@ -509,7 +494,6 @@ export default function Tentang({ tentangRef, t }) {
                   )}
                 </div>
 
-                {/* Order type / Harga per orang */}
                 {(r.Ordertype || r.Priceperperson) && (
                   <div
                     style={{

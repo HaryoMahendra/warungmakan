@@ -10,7 +10,7 @@ const heroImages = [
   "/assets/menu/menulainnya.jpg",
 ];
 
-const SLIDE_DURATION = 2000; 
+const SLIDE_DURATION = 2000;
 
 export default function Hero({ isDark, t }) {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -21,7 +21,6 @@ export default function Hero({ isDark, t }) {
     setReducedMotion(mq.matches);
   }, []);
 
-  
   useEffect(() => {
     if (reducedMotion || heroImages.length <= 1) return;
     const timer = setInterval(() => {
@@ -41,7 +40,6 @@ export default function Hero({ isDark, t }) {
         alignItems: "center",
       }}
     >
-      
       <div
         style={{
           position: "absolute",
@@ -69,7 +67,6 @@ export default function Hero({ isDark, t }) {
         ))}
       </div>
 
-      {/* overlay gelap dasar, dipertegas biar teks selalu terbaca di atas foto apa pun */}
       <div
         style={{
           position: "absolute",
@@ -80,7 +77,6 @@ export default function Hero({ isDark, t }) {
         }}
       />
 
-      {/* vignette tambahan tepat di area teks supaya kontrasnya konsisten */}
       <div
         style={{
           position: "absolute",
@@ -105,60 +101,42 @@ export default function Hero({ isDark, t }) {
           textAlign: "center",
         }}
       >
-        <div className="reveal d1" style={{ marginBottom: 22 }}>
-          <span
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              background: "rgba(0,0,0,.4)",
-              border: "1px solid rgba(251,146,60,.4)",
-              color: "#ffd8b0",
-              fontSize: 11,
-              fontWeight: 700,
-              padding: "7px 16px",
-              borderRadius: 8,
-              letterSpacing: ".07em",
-              textTransform: "uppercase",
-              backdropFilter: "blur(6px)",
-            }}
-          >
-            <span
-              className="pulse-dot"
-              style={{
-                width: 7,
-                height: 7,
-                borderRadius: "50%",
-                background: "#22c55e",
-                flexShrink: 0,
-              }}
-            />
-            Buka Setiap Hari · 06.00 WIB – Habis
-          </span>
-        </div>
 
         <h1
           className="reveal d3 serif"
           style={{
-            fontSize: "clamp(44px,6.5vw,82px)",
-            fontWeight: 900,
-            lineHeight: 1.05,
+            fontWeight: 800,
+            lineHeight: 1.15,
+            letterSpacing: "-.015em",
             color: "#fff8ee",
             marginBottom: 45,
             maxWidth: 820,
             textShadow: "0 3px 24px rgba(0,0,0,.55), 0 1px 3px rgba(0,0,0,.6)",
           }}
         >
-          Selamat Datang di
+          <span
+            style={{ fontSize: "clamp(24px, 3.5vw, 38px)", fontWeight: 600 }}
+          >
+            Selamat Datang di
+          </span>
           <br />
-          <em style={{ color: "#fdba74", fontStyle: "italic" }}>Soto Ayam</em> Kampung Khas Pacitan
+          <span
+            style={{ fontSize: "clamp(38px, 6vw, 72px)", color: "#fb923c" }}
+          >
+            Soto Ayam Kampung
+          </span>
+          <br />
+          <br />
+          <span style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 700 }}>
+            Khas Pacitan
+          </span>
         </h1>
 
         <div
           className="reveal d5"
           style={{
             display: "flex",
-            gap: 12,
+            gap: 14,
             flexWrap: "wrap",
             justifyContent: "center",
             marginBottom: 40,
@@ -166,47 +144,62 @@ export default function Hero({ isDark, t }) {
         >
           <Link
             to="/menu"
-            className="btn-fill"
             style={{
-              fontSize: 14,
-              padding: "14px 28px",
+              fontSize: 15 /* Ditingkatkan dari 14px ke 15px */,
+              fontWeight: 700,
+              padding: "15px 32px",
+              borderRadius: 999,
               textDecoration: "none",
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
+              color: "#1a0d02",
+              background: "linear-gradient(90deg,#fb923c,#ea580c)",
+              boxShadow: "0 12px 32px -10px rgba(234,88,12,.6)",
+              transition: "transform .2s, box-shadow .2s",
             }}
-            onMouseOver={(e) => (e.currentTarget.style.transform = "translateY(-2px)")}
-            onMouseOut={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow =
+                "0 16px 36px -10px rgba(234,88,12,.75)";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow =
+                "0 12px 32px -10px rgba(234,88,12,.6)";
+            }}
           >
-            Lihat Menu
+            Lihat Menu →
           </Link>
           <a
-          
-            href={waLink("Halo, saya ingin bertanya tentang menu dan pemesanan.")}
+            href={waLink(
+              "Halo, saya ingin bertanya tentang menu dan pemesanan.",
+            )}
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              fontSize: 14,
-              padding: "14px 26px",
+              fontSize: 15 /* Ditingkatkan dari 14px ke 15px */,
+              fontWeight: 700,
+              padding: "15px 30px",
+              borderRadius: 999,
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
-              borderRadius: 10,
-              border: "1px solid rgba(251,146,60,.45)",
-              color: "#ffd8b0",
-              background: "rgba(0,0,0,.35)",
-              backdropFilter: "blur(6px)",
+              color: "#ffe8cf",
+              border: "1.5px solid rgba(251,146,60,.4)",
+              background: "rgba(251,146,60,.08)",
+              backdropFilter: "blur(10px)",
               textDecoration: "none",
               transition: "background .2s, transform .2s, border-color .2s",
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.background = "rgba(251,146,60,.18)";
+              e.currentTarget.style.background = "rgba(251,146,60,.2)";
               e.currentTarget.style.borderColor = "#fb923c";
               e.currentTarget.style.transform = "translateY(-2px)";
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.background = "rgba(0,0,0,.35)";
-              e.currentTarget.style.borderColor = "rgba(251,146,60,.45)";
+              e.currentTarget.style.background = "rgba(251,146,60,.08)";
+              e.currentTarget.style.borderColor = "rgba(251,146,60,.4)";
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >
@@ -214,7 +207,6 @@ export default function Hero({ isDark, t }) {
           </a>
         </div>
 
-        
         {heroImages.length > 1 && (
           <div
             className="reveal d5"
@@ -237,9 +229,7 @@ export default function Hero({ isDark, t }) {
                   padding: 0,
                   cursor: "pointer",
                   background:
-                    idx === activeSlide
-                      ? "#fb923c"
-                      : "rgba(255,255,255,.4)",
+                    idx === activeSlide ? "#fb923c" : "rgba(255,255,255,.4)",
                   transition: "width .35s ease, background .35s ease",
                 }}
               />
